@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = 1;
+        console.log(a)
+        new Promise((resolve,reject) => {
+            a = 2;
+            console.log(a);
+            resolve();
+            reject();
+        }).then(() => {
+            a = 3;
+            console.log(a)
+        }).catch(() => {
+            a = 4;
+            console.log(a)
+        })
+        a=5;
+        console.log(a)
+        // console.log(document.getElementById('list'))
+        // 1、
+    //     let str = 'get1_install2_app3_list4_by5_android6';
+    //     let str1 = str.replace(/\_/g,'');
+    //     let str2 = str1.replace(/\d{1}[a-z]/g,function(word){
+    //         return word.toLocaleUpperCase()
+    //    });
+    //     let resultStr = str1.replace(/\d*[02468]/g,'')
+    //     // 2、
+    //     //方法1
+    //     let arr = new Array(1000);
+    //     [...arr.keys()];
+    //     arr.fill(1);
+    //     //方法二
+    //     let arr = new Array(1000);
+    //     arr = arr.join('1,').split(',');
+    //     console.log(arr)
+
+// Array.from(arr.keys());
+//         
+        // 3、
+// let obj1 = 
+//     {a:1,childern:[1,2,3]}
+// // ]
+// let obj2 = 
+//     {b:1,childern:[4,5,6]}
+// // ]
+// function isObjectValueEqual(a, b) {
+//      var aProps = Object.getOwnPropertyNames(a);
+//      var bProps = Object.getOwnPropertyNames(b);
+//       if (aProps.length != bProps.length) {
+//            return false;
+//       }
+//       console.log(111)
+//       for (var i = 0; i < aProps.length; i++) {
+//         var propName = aProps[i]
+//         var propA = a[propName]
+//         var propB = b[propName]
+//         console.log(typeof (propA))
+//         if ((typeof (propA) === 'object')) {
+//           if (this.isObjectValueEqual(propA, propB)) {
+//               return true
+//             } else {
+//               return false
+//               console.log(propA,propB)
+//               console.log(333)
+//             }
+//         } else if (propA !== propB) {
+//             console.log(2222)
+//           return false
+//         }
+//       }
+//     return true
+//     }
+    
+//     console.log(isObjectValueEqual(obj1,obj2))
+  //      function ResultDiff(obj1,obj2) {
+  //          let objPro;
+  //          let diffMode;
+  //          if(Object.prototype.toString.call(obj1) === '[object Array]' && Object.prototype.toString.call(obj1) === '[object Array]') {
+  //            // 数组，循环对比
+  //          } else if(Object.prototype.toString.call(obj1) === '[object object]' && Object.prototype.toString.call(obj1) === '[object object]') {
+  //            // 对象直接对比属性名
+  //            let aProps = Object.getOwnPropertyNames(obj1);
+  //            let bProps = Object.getOwnPropertyNames(obj2);
+  //            if (aProps.length != bProps.length) {
+  //                  return objPro+=bProps;
+  //             }
+  //          }
+  // }
+  // console.log(ResultDiff(obj1,obj2))
+  // let obj1 = {
+  //     id: 1,
+  //     name: 2,
+  //     c: {
+  //       age: 3
+  //     }
+  //   }
+  //   let obj2 = {
+  //     id: 1,
+  //     name: 2,
+  //     c: {
+  //       age: 4
+  //     }
+  //   }
+  //   let arr1 = [
+  //     {id:1,name:2,childern:[1,2,3]},
+      
+  //   ]
+  //   let arr2 = [
+  //     {id:2,name:2,childern:[1,2,5]}
+  //   ]
+  //   function isObject(obj) {
+  //     return Object.prototype.toString.call(obj) === '[object Object]'
+  //   }
+  //   function isArray(arr) {
+  //     return Object.prototype.toString.call(arr) === '[object Array]'
+  //   }
+  //   let difStr = '对象中不同的key为：'
+  //   let diffArr = []
+  //   function equalsObj(oldData, newData) {
+  //     if (oldData === newData) return true
+  //     if (isObject(oldData) && isObject(newData) && Object.keys(oldData).length === Object.keys(newData).length) {
+  //       for (const key in oldData) {
+  //         if (oldData.hasOwnProperty(key)) {
+  //           if (
+  //             !equalsObj(oldData[key], newData[key])
+  //           ) {
+  //             diffArr.push(key)
+  //           }
+  //         }
+  //       }
+  //     } else if (isArray(oldData) && isArray(newData) && oldData.length === newData.length) {
+  //       for (let i = 0, length = oldData.length; i < length; i++) {
+  //         return !equalsObj(oldData[i], newData[i])
+  //       }
+  //     }else {
+  //       return false
+  //     }
+  //   }
+  //   equalsObj(obj1,obj2)
+  //   equalsObj(arr1,arr2)
+  //   console.log(difStr+=diffArr.join('-')) 
+
+  const obj1 = {
+            a: "1",
+            b: 2,
+            c: {
+                d: {
+                    f:[6,7,8]
+                }
+            }
+        };
+        const obj2 = {
+            a: "1",
+            b: 2,
+            c: {
+              d: {
+                  f:[5,6,7]
+              }
+            }
+        };
+        let diffStr = ''
+        let diffArr = []
+        function isObject(o) {
+            return Object.prototype.toString.call(o) == '[object Object]'
+        }
+        function isArray(o) {
+            return Object.prototype.toString.call(o) == '[object Array]'
+        }
+        function diff(o1, o2) {
+            if (o1 === o2)  return true
+            if (isObject(o1) && isObject(o2)) {
+                if (Object.keys(o1).length != Object.keys(o2).length) {
+                    if (Object.keys(o1).length > Object.keys(o2).length) {
+                        for (const key in o1) {
+                            if (!o2.hasOwnProperty(key)) {
+                                diffArr.push(key)
+                            } else {
+                                diff(o1[key],o2[key])
+                            }
+                        }
+                    } else {
+                        for (const key in o2) {
+                            if (!o1.hasOwnProperty(key)) {
+                                diffArr.push(key)
+                            } else {
+                                diff(o1[key],o2[key])
+                            }
+                        }
+                    }
+
+                } else {
+                    for (const key in o1) {
+                        if (!diff(o1[key], o2[key])) {
+                            diffArr.push(key)
+                        }
+                    }
+                }
+            }
+        }
+        diff(obj1, obj2)
+        console.log(diffStr+=diffArr.reverse().join('-'));
+    </script>
+</body>
+</html>

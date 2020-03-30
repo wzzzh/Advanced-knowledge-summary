@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            padding:0;
+            margin:0;
+        }
+       .container{
+           width:100%;
+           /* position: relative; */
+           display: flex;
+       }
+       .pos_left,.pos_right {
+           width:200px;
+       }
+       .pos_center {
+           flex:1;
+       }
+       .pos_left{
+           background-color:red;
+       }
+       .pos_right {
+           background-color: green;
+       }
+       /* .pos_left,.pos_right {
+           width:200px;
+           position: absolute;
+           top:0;
+       }
+       .pos_left{
+           left:0;
+           float: left;
+           background-color:red;
+       }
+       .pos_right {
+           right:0;
+           float: right;
+           background-color: green;
+       }
+       .pos_center {
+           margin:0 200px;
+           background-color: yellow;
+       } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pos_left">left</div>
+        <div class="pos_center">center</div>
+        <div class="pos_right">right</div>
+    </div>
+
+
+
+    <script>
+        const obj = {
+            say() {
+                Array.from(arguments).forEach(item=> {
+                    console.log(`${this.str}${item}`)
+                })
+            }
+        }
+        Object.defineProperties(obj,{
+            'str':{
+                value:'hello',
+                writable:false
+            }
+        });
+        const objZh = {}
+        Object.defineProperties(objZh,{
+            'str':{
+                value:'你好',
+                writable:false
+            }
+        })
+        
+       // 方法一
+        function f() {
+            const {say} = obj
+            objZh.say = say
+            return objZh.say(...arguments)
+        } 
+        f('foo')
+        f('foo','bar')
+        function SAYFUN() {
+            return obj.say.call(objZh,...arguments)
+        }
+       //  方法二
+        const f1 = SAYFUN
+        f1('foo')
+        f1('foo','bar')
+        // var obj1 = {},b={a:123},c={b:123}; 
+        // obj1[b]=123;
+        // console.log(obj1[b])
+
+        function fn() {
+            console.log(this,'11')
+            console.log(this.length)
+        }
+        var obj2 = {
+            length:5,
+            methods: function (fn) { fn();console.log(arguments);arguments[0]() }
+        }
+        obj2.methods(fn)
+    </script>
+</body>
+</html>

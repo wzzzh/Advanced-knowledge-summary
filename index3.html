@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .text_container {
+            width:100px;
+            border:1px solid #000;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            word-break: break-all;
+        } */
+        .text_container {
+            width:100px;
+            border:1px solid #000;
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="text_container">
+        <span>一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十</span>
+    </div>
+    <script>
+        // function EventEmitter(data) {
+           
+            
+        // }
+        // const ee = new EventEmitter()
+        // ee.on('click',(data) => {
+        //     console.log(data)
+        // })
+        // ee.emit('click','hello')
+        a = {
+            fa: () => {console.log(this)},
+            fb: function(){console.log(this)}
+        }
+        a.fa()
+        a.fb()
+        function aa () {
+            var a = 1;
+            return function () {
+               console.log(a++);
+            }
+        }
+        let arrNum = aa()
+        arrNum()
+        arrNum()
+        function Parent(name) {
+            this.name = name
+            this.say = function() {
+                console.log(this.name)
+            }
+        }
+        const child = new Parent('lili')
+        child.say()
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Foo() {
+            var i = 0;
+            return function() {
+                console.log(i++);
+            }
+        }
+        
+        var f1 = Foo(),
+            f2 = Foo();
+        // f1();
+        // f1();
+        // f2();
+
+        window.name = 'win';
+    const obj1 = {
+        name: 'joy',
+        getName: () => {
+            console.log(this); //window 调用前this是什么函数里面的this就是什么
+            console.log(this.name); //win 
+        }
+    };
+    // obj1.getName();
+    // var obj = {
+    //     a:10,
+    //     // b:function() {
+    //     //     console.log(this)
+    //     //     console.log(this.a)
+    //     },
+        
+    // }
+    
+    var result = {'zhang': 98, 'li': 78, 'wang': 38} 
+    function sum(obj) {
+        let total = 0;
+        for(let k in obj) {
+            total += Number(obj[k])
+        }
+        return total;
+    }
+    // console.log(sum(result))
+
+    </script>
+</body>
+</html>
